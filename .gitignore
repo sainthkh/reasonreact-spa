@@ -59,3 +59,12 @@ typings/
 
 # next.js build output
 .next
+
+# reason react
+.merlin
+/lib/*
+!/lib/js/*
+*.bs.js
+.DS_Store
+.bsb.lock
+/build
