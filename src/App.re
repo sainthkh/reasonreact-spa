@@ -1,17 +1,22 @@
-type page = Index | SiteExplorer | KeywordExplorer;
+type page = 
+    | Index 
+    | SiteExplorer 
+    | KeywordExplorer 
+    | Error404 ;
 
 let url_of_page = (page) =>
     switch(page) {
     | Index => "/dashboard/metrics"
     | SiteExplorer => "/site-explorer"
     | KeywordExplorer => "/keyword-explorer"
+    | Error404 => "/404"
     }
 
 type state = {
     page: page,
 };
 
-type action = ClickLink(page);
+type action = ChangePage(page);
 
 let component = ReasonReact.reducerComponent("App");
 
@@ -23,28 +28,32 @@ let make = (_children) => {
 
     reducer: (action: action, _state: state) => {
         switch(action) {
-        | ClickLink(page) => {
-            ReasonReact.Router.push(url_of_page(page));
-            ReasonReact.Update({page: page})
-        }
+        | ChangePage(page) => ReasonReact.Update({page: page})
         }
     },
 
-    render: self => {
-        let onClick = (page) => 
-            (event) => {
-                self.send(page)
-                event->ReactEvent.Synthetic.preventDefault
-            };
-        
+    didMount: self => {
+        let watcherID = ReasonReact.Router.watchUrl(url => {
+            switch(url.path) {
+            | ["dashboard", "metrics"] => self.send(ChangePage(Index))
+            | ["site-explorer"] => self.send(ChangePage(SiteExplorer))
+            | ["keyword-explorer"] => self.send(ChangePage(KeywordExplorer))
+            | _ => self.send(ChangePage(Error404))
+            }
+        })
+        self.onUnmount(() => ReasonReact.Router.unwatchUrl(watcherID))
+    },
+
+    render: self => {        
         <div>
             <h1>{ReasonReact.string("App")}</h1>
-            <a href="#" onClick={onClick(ClickLink(Index))}>{ReasonReact.string("Ahrefs")}</a>
-            <a href="#" onClick={onClick(ClickLink(SiteExplorer))}>{ReasonReact.string("Site Explorer")}</a>
+            <NavLink href=url_of_page(Index)>{ReasonReact.string("Ahrefs")}</NavLink>
+            <NavLink href=url_of_page(SiteExplorer)>{ReasonReact.string("Site Explorer")}</NavLink>
             {switch(self.state.page){
             | Index => <IndexPage />
             | SiteExplorer => <SiteExplorerPage />
             | KeywordExplorer => <KeywordExplorerPage />
+            | Error404 => <Error404Page />
             }}
         </div>
     }
