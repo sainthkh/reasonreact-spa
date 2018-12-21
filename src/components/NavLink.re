@@ -1,6 +1,21 @@
+module Styles = {
+    open Css;
+
+    let newFeature = style([
+        color(hex("f80")),
+        fontSize(px(9)),
+        fontWeight(bold),
+        marginTop(px(3)),
+        marginLeft(px(5)),
+        padding(px(0)),
+        textTransform(uppercase),
+        verticalAlign(textTop),
+    ]);
+}
+
 let component = ReasonReact.statelessComponent("NavLink");
 
-let make = (~href, ~className="", children) => {
+let make = (~href, ~className="", ~newFeature=false, children) => {
     ...component,
     render: _self => {
         let onClick = (link) => 
@@ -9,6 +24,12 @@ let make = (~href, ~className="", children) => {
                 event->ReactEvent.Synthetic.preventDefault
             }
         ;
-        <a href className onClick=onClick(href)>...children</a>
+
+        let a = newFeature ? <span className=Styles.newFeature>{ReasonReact.string("NEW")}</span> : {ReasonReact.string("")};
+        let content = Array.concat([children, [|a|]]);
+
+        <a href className onClick=onClick(href)>
+            ...content
+        </a>
     }
 }
