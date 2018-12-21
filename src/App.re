@@ -1,22 +1,8 @@
-type page = 
-    | Index 
-    | SiteExplorer 
-    | KeywordExplorer 
-    | Error404 ;
-
-let url_of_page = (page) =>
-    switch(page) {
-    | Index => "/dashboard/metrics"
-    | SiteExplorer => "/site-explorer"
-    | KeywordExplorer => "/keyword-explorer"
-    | Error404 => "/404"
-    }
-
 type state = {
-    page: page,
+    page: Url.page,
 };
 
-type action = ChangePage(page);
+type action = ChangePage(Url.page);
 
 let component = ReasonReact.reducerComponent("App");
 
@@ -46,9 +32,7 @@ let make = (_children) => {
 
     render: self => {        
         <div>
-            <h1>{ReasonReact.string("App")}</h1>
-            <NavLink href=url_of_page(Index)>{ReasonReact.string("Ahrefs")}</NavLink>
-            <NavLink href=url_of_page(SiteExplorer)>{ReasonReact.string("Site Explorer")}</NavLink>
+            <NavBar />
             {switch(self.state.page){
             | Index => <IndexPage />
             | SiteExplorer => <SiteExplorerPage />
