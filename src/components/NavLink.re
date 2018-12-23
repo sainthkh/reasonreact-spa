@@ -24,12 +24,12 @@ let make = (~href, ~className="", ~newFeature=false, children) => {
                 event->ReactEvent.Synthetic.preventDefault
             }
         ;
-
-        let a = newFeature ? <span className=Styles.newFeature>{ReasonReact.string("NEW")}</span> : {ReasonReact.string("")};
-        let content = Array.concat([children, [|a|]]);
-
+        
         <a href className onClick=onClick(href)>
-            ...content
+            {ReasonReact.array(Array.concat([
+                children,
+                [| newFeature ? (<span className=Styles.newFeature>{ReasonReact.string("NEW")}</span>) : {ReasonReact.string("")} |],
+            ]))}
         </a>
     }
 }
