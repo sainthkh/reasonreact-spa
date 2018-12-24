@@ -32,7 +32,7 @@ let make = (_children) => {
 
     render: self => {        
         <div>
-            <NavBar />
+            <Header />
             {switch(self.state.page){
             | Index => <IndexPage />
             | SiteExplorer => <SiteExplorerPage />
