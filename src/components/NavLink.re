@@ -28,7 +28,7 @@ let make = (~href, ~className="", ~newFeature=false, children) => {
         <a href className onClick=onClick(href)>
             {ReasonReact.array(Array.concat([
                 children,
-                [| newFeature ? (<span className=Styles.newFeature>{ReasonReact.string("NEW")}</span>) : {ReasonReact.string("")} |],
+                [| newFeature ? (<span className=Styles.newFeature key="new-tag">{ReasonReact.string("NEW")}</span>) : {ReasonReact.string("")} |],
             ]))}
         </a>
     }
