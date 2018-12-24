@@ -1,3 +1,6 @@
+[@bs.module "./ListenerManager"] external addEventListener: (string, ReactEvent.Mouse.t => unit) => int = "add"
+[@bs.module "./ListenerManager"] external removeEventListener: int => unit = "remove"
+
 module Styles = {
     open Css;
 
@@ -52,27 +55,43 @@ type menuItem = {
 
 type state = {
     show: bool,
+    eventId: ref(int),
 };
 
-type action = ToggleMenu;
+type action = OpenMenu | CloseMenu;
 
 let component = ReasonReact.reducerComponent("DropdownMenu");
 
-let make = (~menuName, ~menuItems: list(menuItem), ~className, _children) => {
+let make = (~menuName, ~menuItems: list(menuItem), _children) => {
     ...component,
     initialState: () => {
         show: false,
+        eventId: ref(-1),
     },
 
     reducer: (action: action, state: state) => {
         switch(action) {
-        | ToggleMenu => ReasonReact.Update({show: !state.show})
+        | OpenMenu => ReasonReact.UpdateWithSideEffects({ ...state, show: true }, self => {
+            let _ = Js.Global.setTimeout(() => {
+                state.eventId := addEventListener("click", (_e) => {
+                    self.send(CloseMenu);
+                });
+            }, 0);
+        })
+        | CloseMenu => ReasonReact.UpdateWithSideEffects({ ...state, show: false }, _self => {
+            removeEventListener(state.eventId^);
+        })
         }
     },
 
     render: self => {
         let onClick = event => {
-            self.send(ToggleMenu);
+            if(self.state.show) {
+                self.send(CloseMenu)
+            } else {
+                self.send(OpenMenu)
+            }
+
             event->ReactEvent.Synthetic.preventDefault;
         };
 
@@ -81,8 +100,8 @@ let make = (~menuName, ~menuItems: list(menuItem), ~className, _children) => {
             { self.state.show ? 
                 <div className=Styles.dropdownMenu>
                     {ReasonReact.array(
-                        Array.map(({name, url}) => {
-                            <a href=url key=name className=Styles.menuLink>{ReasonReact.string(name)}</a>
+                        Array.mapi((i, {name, url}) => {
+                            <a href=url key=string_of_int(i) className=Styles.menuLink>{ReasonReact.string(name)}</a>
                         }, Array.of_list(menuItems))
                     )}
                 </div>
