@@ -11,6 +11,7 @@ module Styles = {
     let button = style([
         color(rgba(255, 255, 255, 0.7)),
         textDecoration(none),
+        cursor(`pointer),
         paddingTop(px(14)),
         paddingRight(px(16)),
         hover([
@@ -96,7 +97,9 @@ let make = (~menuName, ~menuItems: list(menuItem), _children) => {
         };
 
         <div className=Styles.dropdownWrap>
-            <a className=Styles.button onClick>{ReasonReact.string(menuName)}</a>
+            <a className=Cn.make([Styles.button, Icons.triangle]) onClick>{
+                ReasonReact.string(menuName)
+            }</a>
             { self.state.show ? 
                 <div className=Styles.dropdownMenu>
                     {ReasonReact.array(
