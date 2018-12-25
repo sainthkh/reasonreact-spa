@@ -7,6 +7,15 @@ module Styles = {
         padding3(~top=px(0), ~h=px(16), ~bottom=px(7)),
     ]);
 
+    let left = style([
+        display(flexBox),
+        marginRight(auto),
+    ])
+
+    let right = style([
+        display(flexBox),
+    ])
+
     let logo = style([
         display(block),
         height(px(28)),
@@ -37,24 +46,28 @@ let make = (_children) => {
     render: _self => {
         <div className=Styles.container>
             <NavLink href=Url.page(Index) className=Styles.logo>{ReasonReact.string("Ahrefs")}</NavLink>
-            <NavBar>
-                <NavLink href=Url.page(Index) className=Styles.link>{ReasonReact.string("Dashboard")}</NavLink>
-                <NavLink href="#" className=Styles.link>{ReasonReact.string("Alerts")}</NavLink>
-                <NavLink href=Url.page(SiteExplorer) className=Styles.link>{ReasonReact.string("Site explorer")}</NavLink>
-                <NavLink href="#" className=Styles.link>{ReasonReact.string("Content explorer")}</NavLink>
-                <NavLink href=Url.page(KeywordExplorer) className=Styles.link>{ReasonReact.string("Keyword explorer")}</NavLink>
-                <NavLink href="#" className=Styles.link>{ReasonReact.string("Rank tracker")}</NavLink>
-                <NavLink href="#" className=Styles.link newFeature=true>{ReasonReact.string("Site audit")}</NavLink>
-                <DropdownMenu menuName="More" menuItems=[
-                    { name: "Ahrefs rank", url: "#"},
-                    { name: "Domain comparison", url: "#"},
-                    { name: "Batch analysis", url: "#"},
-                    { name: "Link intersect", url: "#"},
-                    { name: "SEO toolbar", url: "#"},
-                    { name: "Ahrefs API", url: "#"},
-                    { name: "Apps", url: "#"},
-                ] />
-            </NavBar>
+            <div className=Styles.left>
+                <NavBar>
+                    <NavLink href=Url.page(Index) className=Styles.link>{ReasonReact.string("Dashboard")}</NavLink>
+                    <NavLink href="#" className=Styles.link>{ReasonReact.string("Alerts")}</NavLink>
+                    <NavLink href=Url.page(SiteExplorer) className=Styles.link>{ReasonReact.string("Site explorer")}</NavLink>
+                    <NavLink href="#" className=Styles.link>{ReasonReact.string("Content explorer")}</NavLink>
+                    <NavLink href=Url.page(KeywordExplorer) className=Styles.link>{ReasonReact.string("Keywords explorer")}</NavLink>
+                    <NavLink href="#" className=Styles.link>{ReasonReact.string("Rank tracker")}</NavLink>
+                    <NavLink href="#" className=Styles.link newFeature=true>{ReasonReact.string("Site audit")}</NavLink>
+                    <DropdownMenu text="More" menuItems=[
+                            { name: "Ahrefs rank", url: "#"},
+                            { name: "Domain comparison", url: "#"},
+                            { name: "Batch analysis", url: "#"},
+                            { name: "Link intersect", url: "#"},
+                            { name: "SEO toolbar", url: "#"},
+                            { name: "Ahrefs API", url: "#"},
+                            { name: "Apps", url: "#"},
+                    ] />
+                </NavBar>
+            </div>
+            <div className=Styles.right>
+            </div>
         </div>
     }
 }
