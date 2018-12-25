@@ -2,10 +2,11 @@ module Styles = {
     open Css;
 
     let newFeature = style([
+        display(inlineBlock),
         color(hex("f80")),
         fontSize(px(9)),
         fontWeight(bold),
-        marginTop(px(3)),
+        marginTop(px(-2)),
         marginLeft(px(5)),
         padding(px(0)),
         textTransform(uppercase),

@@ -9,11 +9,10 @@ module Styles = {
     ])
 
     let button = style([
+        display(inlineBlock),
         color(rgba(255, 255, 255, 0.7)),
         textDecoration(none),
         cursor(`pointer),
-        paddingTop(px(14)),
-        paddingRight(px(16)),
         hover([
             color(hex("fff")),
         ]),

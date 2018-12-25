@@ -14,6 +14,7 @@ module Styles = {
 
     let right = style([
         display(flexBox),
+        paddingTop(px(7)),
     ])
 
     let logo = style([
@@ -31,6 +32,7 @@ module Styles = {
     ])
 
     let link = style([
+        display(block),
         color(rgba(255, 255, 255, 0.7)),
         hover([
             color(hex("fff")),
@@ -67,6 +69,16 @@ let make = (_children) => {
                 </NavBar>
             </div>
             <div className=Styles.right>
+                <IconDropdownMenu icon=Icons.profile 
+                    menu=<SimpleMenu menuOnLeft=false menuItems=[
+                        { name: "Subscription plan", url: "#" },
+                        { name: "Orders", url: "#" },
+                        { name: "Account settings", url: "#" },
+                        { name: "Email subscriptions", url: "#" },
+                        { name: "Applications", url: "#" },
+                        { name: "Sign out", url: "#" },
+                    ] />
+                />
             </div>
         </div>
     }
