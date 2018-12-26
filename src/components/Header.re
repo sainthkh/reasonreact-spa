@@ -10,6 +10,7 @@ module Styles = {
     let left = style([
         display(flexBox),
         marginRight(auto),
+        paddingTop(px(14)),
     ])
 
     let right = style([
@@ -69,34 +70,39 @@ let make = (_children) => {
                 </NavBar>
             </div>
             <div className=Styles.right>
-                <IconDropdownMenu icon=Icons.profile 
-                    menu=<SimpleMenu menuOnLeft=false menuItems=[
-                        Text({ title: "Kukhyeon Heo", explanation: "sainthkh@gmail.com" }),
-                        Separator,
-                        Link({ name: "Subscription plan", url: "#" }),
-                        Link({ name: "Orders", url: "#" }),
-                        Link({ name: "Account settings", url: "#" }),
-                        Link({ name: "Email subscriptions", url: "#" }),
-                        Link({ name: "Applications", url: "#" }),
-                        Submenu("Language", [
-                            Link({ name: "Deutsch", url: "#"}),
-                            Link({ name: "English", url: "#"}),
-                            Link({ name: {js|Español|js}, url: "#"}),
-                            Link({ name: {js|Français|js}, url: "#"}),
-                            Link({ name: "Italiano", url: "#"}),
-                            Link({ name: {js|日本語|js}, url: "#"}),
-                            Link({ name: "Nederlands", url: "#"}),
-                            Link({ name: "Polski", url: "#"}),
-                            Link({ name: {js|Português|js}, url: "#"}),
-                            Link({ name: {js|Русский|js}, url: "#"}),
-                            Link({ name: "Svenska", url: "#"}),
-                            Link({ name: {js|Türkçe|js}, url: "#"}),
-                            Link({ name: {js|中文|js}, url: "#"}),
-                        ]),
-                        Separator,
-                        Link({ name: "Sign out", url: "#" }),
-                    ] />
-                />
+                <NavBar>
+                    <IconDropdownMenu icon=Icons.question menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
+                    <IconDropdownMenu icon=Icons.bell menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
+                    <IconDropdownMenu icon=Icons.exportBox menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
+                    <IconDropdownMenu icon=Icons.profile 
+                        menu=<SimpleMenu menuOnLeft=false menuItems=[
+                            Text({ title: "Kukhyeon Heo", explanation: "sssshkh@gmail.com" }),
+                            Separator,
+                            Link({ name: "Subscription plan", url: "#" }),
+                            Link({ name: "Orders", url: "#" }),
+                            Link({ name: "Account settings", url: "#" }),
+                            Link({ name: "Email subscriptions", url: "#" }),
+                            Link({ name: "Applications", url: "#" }),
+                            Submenu("Language", [
+                                Link({ name: "Deutsch", url: "#"}),
+                                Link({ name: "English", url: "#"}),
+                                Link({ name: {js|Español|js}, url: "#"}),
+                                Link({ name: {js|Français|js}, url: "#"}),
+                                Link({ name: "Italiano", url: "#"}),
+                                Link({ name: {js|日本語|js}, url: "#"}),
+                                Link({ name: "Nederlands", url: "#"}),
+                                Link({ name: "Polski", url: "#"}),
+                                Link({ name: {js|Português|js}, url: "#"}),
+                                Link({ name: {js|Русский|js}, url: "#"}),
+                                Link({ name: "Svenska", url: "#"}),
+                                Link({ name: {js|Türkçe|js}, url: "#"}),
+                                Link({ name: {js|中文|js}, url: "#"}),
+                            ]),
+                            Separator,
+                            Link({ name: "Sign out", url: "#" }),
+                        ] />
+                    />
+                </NavBar>
             </div>
         </div>
     }

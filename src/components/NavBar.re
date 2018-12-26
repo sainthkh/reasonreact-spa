@@ -6,8 +6,10 @@ module Styles {
     ])
 
     let navItem = style([
-        paddingTop(px(14)),
-        paddingRight(px(16)),
+        marginRight(px(16)),
+        lastChild([
+            marginRight(zero),
+        ])
     ])
 }
 
