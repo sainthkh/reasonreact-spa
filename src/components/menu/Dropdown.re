@@ -1,5 +1,5 @@
-[@bs.module "./ListenerManager"] external addEventListener: (string, ReactEvent.Mouse.t => unit) => int = "add"
-[@bs.module "./ListenerManager"] external removeEventListener: int => unit = "remove"
+[@bs.module "../ListenerManager"] external addEventListener: (string, ReactEvent.Mouse.t => unit) => int = "add"
+[@bs.module "../ListenerManager"] external removeEventListener: int => unit = "remove"
 
 module Styles = {
     open Css;
@@ -70,10 +70,7 @@ let make = (~content, ~menu, ~triangle=false, _children) => {
             <a className=Cn.make([Styles.button, Icons.triangle->Cn.ifTrue(triangle)]) onClick>
                 content
             </a>
-            {self.state.show ? 
-                menu
-            :
-            {ReasonReact.string("")}}
+            {self.state.show ? menu : {ReasonReact.string("")}}
         </div>
     }
 }

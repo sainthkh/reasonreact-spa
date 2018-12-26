@@ -58,25 +58,43 @@ let make = (_children) => {
                     <NavLink href="#" className=Styles.link>{ReasonReact.string("Rank tracker")}</NavLink>
                     <NavLink href="#" className=Styles.link newFeature=true>{ReasonReact.string("Site audit")}</NavLink>
                     <DropdownMenu text="More" menuItems=[
-                            { name: "Ahrefs rank", url: "#"},
-                            { name: "Domain comparison", url: "#"},
-                            { name: "Batch analysis", url: "#"},
-                            { name: "Link intersect", url: "#"},
-                            { name: "SEO toolbar", url: "#"},
-                            { name: "Ahrefs API", url: "#"},
-                            { name: "Apps", url: "#"},
+                            Link({ name: "Ahrefs rank", url: "#"}),
+                            Link({ name: "Domain comparison", url: "#"}),
+                            Link({ name: "Batch analysis", url: "#"}),
+                            Link({ name: "Link intersect", url: "#"}),
+                            Link({ name: "SEO toolbar", url: "#"}),
+                            Link({ name: "Ahrefs API", url: "#"}),
+                            Link({ name: "Apps", url: "#"}),
                     ] />
                 </NavBar>
             </div>
             <div className=Styles.right>
                 <IconDropdownMenu icon=Icons.profile 
                     menu=<SimpleMenu menuOnLeft=false menuItems=[
-                        { name: "Subscription plan", url: "#" },
-                        { name: "Orders", url: "#" },
-                        { name: "Account settings", url: "#" },
-                        { name: "Email subscriptions", url: "#" },
-                        { name: "Applications", url: "#" },
-                        { name: "Sign out", url: "#" },
+                        Text({ title: "Kukhyeon Heo", explanation: "sainthkh@gmail.com" }),
+                        Separator,
+                        Link({ name: "Subscription plan", url: "#" }),
+                        Link({ name: "Orders", url: "#" }),
+                        Link({ name: "Account settings", url: "#" }),
+                        Link({ name: "Email subscriptions", url: "#" }),
+                        Link({ name: "Applications", url: "#" }),
+                        Submenu("Language", [
+                            Link({ name: "Deutsch", url: "#"}),
+                            Link({ name: "English", url: "#"}),
+                            Link({ name: {js|Español|js}, url: "#"}),
+                            Link({ name: {js|Français|js}, url: "#"}),
+                            Link({ name: "Italiano", url: "#"}),
+                            Link({ name: {js|日本語|js}, url: "#"}),
+                            Link({ name: "Nederlands", url: "#"}),
+                            Link({ name: "Polski", url: "#"}),
+                            Link({ name: {js|Português|js}, url: "#"}),
+                            Link({ name: {js|Русский|js}, url: "#"}),
+                            Link({ name: "Svenska", url: "#"}),
+                            Link({ name: {js|Türkçe|js}, url: "#"}),
+                            Link({ name: {js|中文|js}, url: "#"}),
+                        ]),
+                        Separator,
+                        Link({ name: "Sign out", url: "#" }),
                     ] />
                 />
             </div>

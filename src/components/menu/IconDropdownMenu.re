@@ -3,6 +3,7 @@ module Styles = {
     
     let icon = style([
         opacity(0.3),
+        marginTop(px(9)),
         hover([
             opacity(1.0),
         ])
