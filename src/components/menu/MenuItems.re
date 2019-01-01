@@ -1,21 +1,5 @@
 module Styles = {
     open Css;
-    
-    let menuLink = style([
-        display(flexBox),
-        fontWeight(normal),
-        color(hex("333")),
-        lineHeight(px(18)),
-        padding4(~top=px(4), ~right=px(16), ~bottom=px(4), ~left=px(10)),
-        hover([
-            backgroundColor(hex("f2f2f5")),
-        ])
-    ]);
-
-    let separator = style([
-        borderTop(px(1), solid, hex("ebebee")),
-        margin2(~v=px(3), ~h=px(0)),
-    ]);
 
     let menuTextWrap = style([
         padding3(~top=px(4), ~h=px(10), ~bottom=px(3)),
@@ -44,6 +28,8 @@ module Styles = {
             opacity(0.3),
         ])
     ]);
+
+    let menuLink = MenuStyles.menuLink;
 
     global({j|.$menuLink:hover .$arrow|j}, [
         opacity(1.0),
@@ -74,14 +60,14 @@ let make = (~menuItems, ~onSubmenu, _children) => {
                 | Link({name, url}) => 
                     <a href=url 
                         key 
-                        className=Styles.menuLink>
+                        className=MenuStyles.menuLink>
                         {ReasonReact.string(name)}
                     </a>
-                | Separator => <div className=Styles.separator key />
+                | Separator => <div className=MenuStyles.separator key />
                 | Submenu(name, menu) => 
                     <a href="#" 
                         key 
-                        className=Styles.menuLink
+                        className=MenuStyles.menuLink
                         onClick=onClick(name, menu)>
                         {ReasonReact.string(name)}
                         <span className=Styles.arrow />

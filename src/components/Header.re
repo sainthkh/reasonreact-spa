@@ -72,7 +72,26 @@ let make = (_children) => {
             </div>
             <div className=Styles.right>
                 <NavBar>
-                    <Dropdown button=Icon(Icons.question) menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
+                    <Dropdown button=Icon(Icons.question) 
+                        menu=<DetailedMenu menuOnLeft=false menuItems=[
+                            { icon: Icons.chat, 
+                                title: "Live chat", 
+                                explanation: "Start a conversation with our friendly support specialists", 
+                                link: "javascript:Intercom('show');" },
+                            { icon: Icons.smallQuestion, 
+                                title: "Help",
+                                explanation: "Find a quick answer to your question about Ahrefs tools & data",
+                                link: "https://help.ahrefs.com/" },
+                            { icon: Icons.academy,
+                                title: "Academy",
+                                explanation: "Video tutorials to upgrade your marketing workflows with Ahrefs tools & data",
+                                link: "https://ahrefs.com/academy" },
+                            { icon: Icons.suggest,
+                                title: "Feature suggest",
+                                explanation: "Suggest a feature that you would love to see on Ahrefs",
+                                link: "https://ahrefs.canny.io/" },
+                        ] /> 
+                    />
                     <Dropdown button=Icon(Icons.bell) menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
                     <Dropdown button=Icon(Icons.exportBox) menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
                     <Dropdown button=Icon(Icons.profile)

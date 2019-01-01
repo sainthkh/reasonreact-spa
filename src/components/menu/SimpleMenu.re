@@ -1,39 +1,8 @@
 module Styles = {
     open Css;
-    
-    let menuWrapBase = style([
-        position(absolute),
-        top(pct(100.0)),
-        zIndex(1000),
-        margin3(~top=px(2), ~h=px(0), ~bottom=px(0)),
-        padding2(~v=px(4), ~h=px(0)),
-        maxHeight(px(400)),
-        minWidth(px(230)),
-        
-        color(hex("373a3c")),
-        backgroundColor(hex("fff")),
-        backgroundClip(paddingBox),
-        border(px(1), solid, rgba(0, 0, 0, 0.1)),
-        borderRadius(px(3)),
-        boxShadow(~x=px(0), ~y=px(3), ~blur=px(20), ~spread=px(-4), rgba(0, 0, 0, 0.2)),
-    ]);
-
-    let menuWrapOnLeft = merge([
-        menuWrapBase,
-        style([
-            left(px(0)),
-        ]),
-    ]);
-
-    let menuWrapOnRight = merge([
-        menuWrapBase,
-        style([
-            right(px(0)),
-        ]),
-    ]);
 
     let backButton = merge([
-        MenuItems.Styles.menuLink,
+        MenuStyles.menuLink,
         style([
             borderBottom(px(1), solid, hex("ebebee")),
             fontWeight(bold),
@@ -104,7 +73,7 @@ let make = (~menuItems: list(menuItem), ~menuOnLeft=true, _children) => {
     },
 
     render: self => {
-        let menuWrap = menuOnLeft ? Styles.menuWrapOnLeft : Styles.menuWrapOnRight;
+        let menuWrap = MenuStyles.menuWrap(menuOnLeft)
         let menu = Stack.top(self.state.menuStack);
 
         let onSubmenu = (title, menuItems) => 
