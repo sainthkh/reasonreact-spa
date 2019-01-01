@@ -67,32 +67,32 @@ let make = (~menuItems, ~onSubmenu, _children) => {
             };
 
         {ReasonReact.array(
-                Array.mapi((i, menuItem) => {
-                    let key = string_of_int(i)
+            Array.mapi((i, menuItem) => {
+                let key = string_of_int(i)
 
-                    switch(menuItem) {
-                    | Link({name, url}) => 
-                        <a href=url 
-                            key 
-                            className=Styles.menuLink>
-                            {ReasonReact.string(name)}
-                        </a>
-                    | Separator => <div className=Styles.separator key />
-                    | Submenu(name, menu) => 
-                        <a href="#" 
-                            key 
-                            className=Styles.menuLink
-                            onClick=onClick(name, menu)>
-                            {ReasonReact.string(name)}
-                            <span className=Styles.arrow />
-                        </a>
-                    | Text({title, explanation}) => 
-                        <div className=Styles.menuTextWrap key>
-                            <h5 className=Styles.menuTextTitle>{ReasonReact.string(title)}</h5>
-                            <p className=Styles.menuTextExplanation>{ReasonReact.string(explanation)}</p>
-                        </div>
-                    }
-                }, Array.of_list(menuItems))
+                switch(menuItem) {
+                | Link({name, url}) => 
+                    <a href=url 
+                        key 
+                        className=Styles.menuLink>
+                        {ReasonReact.string(name)}
+                    </a>
+                | Separator => <div className=Styles.separator key />
+                | Submenu(name, menu) => 
+                    <a href="#" 
+                        key 
+                        className=Styles.menuLink
+                        onClick=onClick(name, menu)>
+                        {ReasonReact.string(name)}
+                        <span className=Styles.arrow />
+                    </a>
+                | Text({title, explanation}) => 
+                    <div className=Styles.menuTextWrap key>
+                        <h5 className=Styles.menuTextTitle>{ReasonReact.string(title)}</h5>
+                        <p className=Styles.menuTextExplanation>{ReasonReact.string(explanation)}</p>
+                    </div>
+                }
+            }, Array.of_list(menuItems))
         )}
     }
 }
