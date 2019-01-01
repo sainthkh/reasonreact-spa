@@ -58,7 +58,7 @@ let make = (_children) => {
                     <NavLink href=Url.page(KeywordExplorer) className=Styles.link>{ReasonReact.string("Keywords explorer")}</NavLink>
                     <NavLink href="#" className=Styles.link>{ReasonReact.string("Rank tracker")}</NavLink>
                     <NavLink href="#" className=Styles.link newFeature=true>{ReasonReact.string("Site audit")}</NavLink>
-                    <DropdownMenu text="More" menuItems=[
+                    <Dropdown button=Text("More") menu=<SimpleMenu menuItems=[
                             Link({ name: "Ahrefs rank", url: "#"}),
                             Link({ name: "Domain comparison", url: "#"}),
                             Link({ name: "Batch analysis", url: "#"}),
@@ -66,15 +66,16 @@ let make = (_children) => {
                             Link({ name: "SEO toolbar", url: "#"}),
                             Link({ name: "Ahrefs API", url: "#"}),
                             Link({ name: "Apps", url: "#"}),
-                    ] />
+                        ] />
+                    />
                 </NavBar>
             </div>
             <div className=Styles.right>
                 <NavBar>
-                    <IconDropdownMenu icon=Icons.question menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
-                    <IconDropdownMenu icon=Icons.bell menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
-                    <IconDropdownMenu icon=Icons.exportBox menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
-                    <IconDropdownMenu icon=Icons.profile 
+                    <Dropdown button=Icon(Icons.question) menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
+                    <Dropdown button=Icon(Icons.bell) menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
+                    <Dropdown button=Icon(Icons.exportBox) menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
+                    <Dropdown button=Icon(Icons.profile)
                         menu=<SimpleMenu menuOnLeft=false menuItems=[
                             Text({ title: "Kukhyeon Heo", explanation: "sssshkh@gmail.com" }),
                             Separator,

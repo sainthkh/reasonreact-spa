@@ -17,12 +17,26 @@ module Styles = {
             color(hex("fff")),
         ]),
     ])
+
+    let icon = style([
+        opacity(0.3),
+        marginTop(px(9)),
+        hover([
+            opacity(1.0),
+        ])
+    ]);
+
+    let active = style([
+        opacity(1.0),
+    ]);
 }
 
 type menuItem = {
     name: string, 
     url: string,
 }
+
+type button = Text(string) | Icon(string)
 
 type state = {
     show: bool,
@@ -33,7 +47,7 @@ type action = OpenMenu | CloseMenu;
 
 let component = ReasonReact.reducerComponent("Dropdown");
 
-let make = (~content, ~menu, ~triangle=false, _children) => {
+let make = (~button: button, ~menu, _children) => {
     ...component,
     initialState: () => {
         show: false,
@@ -67,8 +81,25 @@ let make = (~content, ~menu, ~triangle=false, _children) => {
         };
 
         <div className=Styles.dropdownWrap>
-            <a className=Cn.make([Styles.button, Icons.triangle->Cn.ifTrue(triangle)]) onClick>
-                content
+            <a className=Cn.make([
+                Styles.button, 
+                Cn.mapSome(
+                    Some(button),
+                    fun
+                    | Text(_text) => Icons.triangle
+                    | Icon(_icon) => ""
+                )]) 
+                onClick>
+                { switch(button) {
+                | Text(button) => { ReasonReact.string(button) }
+                | Icon(icon) => <span 
+                        className=Cn.make([
+                            icon, 
+                            Styles.icon, 
+                            Styles.active->Cn.ifTrue(self.state.show),
+                        ]) 
+                    />
+                }}
             </a>
             {self.state.show ? menu : {ReasonReact.string("")}}
         </div>
