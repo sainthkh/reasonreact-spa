@@ -1,36 +1,3 @@
-module Styles = {
-    open Css;
-    
-    let titleWrap = style([
-        display(flexBox),
-        padding2(~v=px(9), ~h=px(16)),
-        borderBottom(px(1), `solid, hex("ebebee")),
-    ]);
-
-    let title = style([
-        fontWeight(`bold),
-    ])
-
-    let button = style([
-        marginLeft(`auto),
-    ])
-
-    let messageAreaWrap = style([
-        display(flexBox),
-        justifyContent(`center),
-    ])
-
-    let loading = style([
-        width(px(24)),
-        height(px(24)),
-        padding2(~v=px(16), ~h=`zero),
-    ])
-
-    let empty = style([
-        padding2(~v=px(16), ~h=`zero),
-    ])
-}
-
 type state = 
     | Loading
     | Loaded(Message_bs.messages)
@@ -42,9 +9,9 @@ type action =
     | FetchSucceeded(Message_bs.messages)
     | FetchFailed
 
-let component = ReasonReact.reducerComponent("MessageBoxMenu");
+let component = ReasonReact.reducerComponent("ExportBoxMenu");
 
-let make = (~title, ~source, ~buttonText, _children) => {
+let make = (_children) => {
     ...component,
     initialState: () => Loading,
     didMount: self => self.send(FetchMessages),
@@ -53,7 +20,7 @@ let make = (~title, ~source, ~buttonText, _children) => {
         switch(action) {
         | FetchMessages => ReasonReact.UpdateWithSideEffects(Loading, self => {
             Js.Promise.(
-                Fetch.fetch("http://localhost:3000" ++ source)
+                Fetch.fetch("http://localhost:3000/exports")
                 |> then_(Fetch.Response.json)
                 |> then_(json => {
                     json
@@ -80,18 +47,18 @@ let make = (~title, ~source, ~buttonText, _children) => {
 
     render: self => {
         <div className=MenuStyles.messageBoxWrap>
-            <div className=Styles.titleWrap>
-                <div className=Styles.title>{ ReasonReact.string(title) }</div>
+            <div className=MenuStyles.MessageBox.titleWrap>
+                <div className=MenuStyles.MessageBox.title>{ ReasonReact.string("Exported files") }</div>
                 { switch(self.state) {
-                | Loaded(_messages) => <div className=Styles.button><a href="#">{ ReasonReact.string(buttonText) }</a></div>
+                | Loaded(_messages) => <div className=MenuStyles.MessageBox.button><a href="#">{ ReasonReact.string("Remove all") }</a></div>
                 | _ => { ReasonReact.string("") }
                 }}
             </div>
-            <div className=Styles.messageAreaWrap>
+            <div className=MenuStyles.MessageBox.messageAreaWrap>
                 {switch(self.state) {
-                | Loading => <img className=Styles.loading src="https://cdn.ahrefs.com/images/loader.gif" />
-                | LoadedEmpty => <div className=Styles.empty>{ ReasonReact.string("You have no exported files.") }</div>
-                | Loaded(messages) => { ReasonReact.string("Loaded") }
+                | Loading => <img className=Cn.make([MenuStyles.MessageBox.loading, MenuStyles.MessageBox.empty])  src="https://cdn.ahrefs.com/images/loader.gif" />
+                | LoadedEmpty => <div className=MenuStyles.MessageBox.empty>{ ReasonReact.string("You have no exported files.") }</div>
+                | Loaded(_messages) => { ReasonReact.string("I don't have access.") }
                 | Error => { ReasonReact.string("Error") }
                 }}
             </div>

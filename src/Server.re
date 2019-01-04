@@ -11,7 +11,8 @@ App.use(app, Middleware.from((next, _req, res) => {
 
 App.get(app, ~path="/notifications", Middleware.from((_next, _req, res) => {
     let messages: Message_bs.messages = [
-      { icon: "test", title: "test", date: "Dec, 20", messageType: `YouTubeVideo, link: "/test", read: false },
+      { icon: "test", title: "Marketing Funnels for Beginners: A Comprehensive Guide", date: "Dec 20", messageType: `BlogPost, link: "https://ahrefs.com/blog/marketing-funnels/", read: true },
+      { icon: "test", title: "Copy My Link Building System: How to Get Backlinks \"At Scale\"", date: "Dec 19", messageType: `YouTubeVideo, link: "https://www.youtube.com/watch?v=Ovu2ZYWgOJQ&index=1&list=PLvJ_dXFSpd2tjUTuAHpHidz5e2hAedP_m", read: false },
     ]
     
     res
