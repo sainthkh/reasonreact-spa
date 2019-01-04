@@ -93,7 +93,7 @@ let make = (_children) => {
                         ] /> 
                     />
                     <Dropdown button=Icon(Icons.bell) menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
-                    <Dropdown button=Icon(Icons.exportBox) menu=<SimpleMenu menuOnLeft=false menuItems=[] /> />
+                    <Dropdown button=Icon(Icons.exportBox) menu=<ExportBoxMenu title="Exported files" source="/exports" buttonText="Remove all" /> />
                     <Dropdown button=Icon(Icons.profile)
                         menu=<SimpleMenu menuOnLeft=false menuItems=[
                             Text({ title: "Kukhyeon Heo", explanation: "sssshkh@gmail.com" }),

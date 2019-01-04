@@ -32,6 +32,14 @@ module Styles = {
         ]),
     ]);
 
+    let messageBoxWrap = merge([
+        menuWrapBase,
+        style([
+            minWidth(px(430)),
+            right(px(0)),
+        ])
+    ])
+
     let menuLink = style([
         display(flexBox),
         fontWeight(normal),
@@ -52,6 +60,8 @@ module Styles = {
 let menuWrap = (menuOnLeft) => {
     menuOnLeft ? Styles.menuWrapOnLeft : Styles.menuWrapOnRight;
 }
+
+let messageBoxWrap = Styles.messageBoxWrap;
 
 let menuLink = Styles.menuLink
 let separator = Styles.separator

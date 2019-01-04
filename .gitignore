@@ -68,3 +68,7 @@ typings/
 .DS_Store
 .bsb.lock
 /build
+*_bs.ml
+*_bs.mli
+*_t.ml
+*_t.mli

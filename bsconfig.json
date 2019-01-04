@@ -20,7 +20,10 @@
   "bs-dependencies": [
     "reason-react",
     "bs-css",
-    "re-classnames"
+    "re-classnames",
+    "bs-express",
+    "bs-fetch",
+    "@ahrefs/bs-atdgen-codec-runtime"
   ],
   "refmt": 3
 }

@@ -1,0 +1,12 @@
+type messageType = [BlogPost | YouTubeVideo | Export]
+
+type message = {
+    icon: string;
+    title: string; 
+    date: string;
+    messageType: messageType;
+    link: string;
+    read: bool;
+}
+
+type messages = message list 
