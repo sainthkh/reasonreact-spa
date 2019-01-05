@@ -65,35 +65,3 @@ let messageBoxWrap = Styles.messageBoxWrap;
 
 let menuLink = Styles.menuLink
 let separator = Styles.separator
-
-module MessageBox {
-    open Css;
-    
-    let titleWrap = style([
-        display(flexBox),
-        padding2(~v=px(9), ~h=px(16)),
-        borderBottom(px(1), `solid, hex("ebebee")),
-    ]);
-
-    let title = style([
-        fontWeight(`bold),
-    ])
-
-    let button = style([
-        marginLeft(`auto),
-    ])
-
-    let messageAreaWrap = style([
-        display(flexBox),
-        justifyContent(`center),
-    ])
-
-    let loading = style([
-        width(px(24)),
-        height(px(24)),
-    ])
-
-    let empty = style([
-        padding2(~v=px(16), ~h=`zero),
-    ])
-}
