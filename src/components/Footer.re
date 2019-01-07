@@ -5,6 +5,10 @@ module Styles = {
         background(hex("f2f2f5")),
         padding2(~v=px(18), ~h=px(16)),
         borderTop(px(1), `solid, hex("e5e5e8")),
+        position(absolute),
+        bottom(zero),
+        width(vw(100.0)),
+        boxSizing(borderBox),
     ]);
 
     let menus = style([

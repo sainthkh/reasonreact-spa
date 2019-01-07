@@ -14,7 +14,7 @@ module Styles = {
 
     let input = style([
         padding4(~top=px(4), ~right=px(35), ~bottom=px(3), ~left=px(10)),
-        width(px(595)),
+        width(pct(100.0)),
         lineHeight(px(21)),
         border(px(1), `solid, hex("fff")),
         borderRightWidth(px(0)),

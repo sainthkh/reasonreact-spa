@@ -36,6 +36,9 @@ module Styles = {
         borderBottom(px(1), `solid, hex("ddd")),
         hover([
             background(rgba(55,157,228,0.12)),
+        ]),
+        lastChild([
+            borderBottomWidth(zero),
         ])
     ])
 
