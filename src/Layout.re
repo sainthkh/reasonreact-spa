@@ -13,12 +13,9 @@ let make = (children) => {
 
     render: _self => {
         <div className=Styles.wrap>
-            {ReasonReact.array(Array.concat([
-                [|<Header />|],
-                children,
-                [|<Footer />|]
-            ]
-            ))}
+            <Header />
+            <div>...children</div>
+            <Footer />
         </div>
     }
 }
