@@ -31,14 +31,13 @@ let make = (_children) => {
     },
 
     render: self => {        
-        <div>
-            <Header />
+        <Layout>
             {switch(self.state.page){
             | Index => <IndexPage />
             | SiteExplorer => <SiteExplorerPage />
             | KeywordExplorer => <KeywordExplorerPage />
             | Error404 => <Error404Page />
             }}
-        </div>
+        </Layout>
     }
 }
