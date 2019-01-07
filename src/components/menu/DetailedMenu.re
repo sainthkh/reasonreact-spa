@@ -32,14 +32,15 @@ type detailedMenuItem = {
 
 let component = ReasonReact.statelessComponent("DetailedMenu")
 
-let make = (~menuItems: list(detailedMenuItem), ~menuOnLeft, _children) => {
+let make = (~menuItems: list(detailedMenuItem), ~menuOnLeft, ~marginRight, _children) => {
     ...component,
 
     render: _self => {
-        let menuWrap = MenuStyles.menuWrap(menuOnLeft);
-        let length = List.length(menuItems);
-
-        <div className=menuWrap>
+        <div className=Cn.make([
+            MenuStyles.menuWrap(menuOnLeft), 
+            MenuStyles.marginRight(marginRight), 
+            MenuStyles.triangle(-marginRight)
+            ])>
             {ReasonReact.array(
                 Array.mapi((i, menuItem) => {
                     let key = string_of_int(i);
@@ -52,7 +53,7 @@ let make = (~menuItems: list(detailedMenuItem), ~menuOnLeft, _children) => {
                                 <div className=Styles.explanation>{ReasonReact.string(menuItem.explanation)}</div>
                             </div>
                         </a>
-                        { i < length - 1 ?
+                        { i < List.length(menuItems) - 1 ?
                             <div className=MenuStyles.separator /> :
                             {ReasonReact.string("")}
                         }

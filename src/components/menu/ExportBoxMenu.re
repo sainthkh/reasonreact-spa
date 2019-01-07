@@ -13,6 +13,7 @@ let make = (_children) => {
                 self.send(emptyMessages)
             }}
             emptyMessage="You have no exported files"
+            marginRight={-33}
         />
     }
 }

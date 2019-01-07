@@ -58,7 +58,7 @@ let make = (_children) => {
                     <NavLink href=Url.page(KeywordExplorer) className=Styles.link>{ReasonReact.string("Keywords explorer")}</NavLink>
                     <NavLink href="#" className=Styles.link>{ReasonReact.string("Rank tracker")}</NavLink>
                     <NavLink href="#" className=Styles.link newFeature=true>{ReasonReact.string("Site audit")}</NavLink>
-                    <Dropdown button=Text("More") menu=<SimpleMenu menuItems=[
+                    <Dropdown button=Text("More") menu=<SimpleMenu marginRight=0 menuItems=[
                             Link({ name: "Ahrefs rank", url: "#"}),
                             Link({ name: "Domain comparison", url: "#"}),
                             Link({ name: "Batch analysis", url: "#"}),
@@ -73,7 +73,7 @@ let make = (_children) => {
             <div className=Styles.right>
                 <NavBar>
                     <Dropdown button=Icon(Icons.question) 
-                        menu=<DetailedMenu menuOnLeft=false menuItems=[
+                        menu=<DetailedMenu menuOnLeft=false marginRight={-97} menuItems=[
                             { icon: Icons.chat, 
                                 title: "Live chat", 
                                 explanation: "Start a conversation with our friendly support specialists", 
@@ -95,7 +95,7 @@ let make = (_children) => {
                     <Dropdown button=Icon(Icons.bell) menu=<NotificationBoxMenu /> />
                     <Dropdown button=Icon(Icons.exportBox) menu=<ExportBoxMenu /> />
                     <Dropdown button=Icon(Icons.profile)
-                        menu=<SimpleMenu menuOnLeft=false menuItems=[
+                        menu=<SimpleMenu marginRight={-10} menuOnLeft=false menuItems=[
                             Text({ title: "Kukhyeon Heo", explanation: "sssshkh@gmail.com" }),
                             Separator,
                             Link({ name: "Subscription plan", url: "#" }),

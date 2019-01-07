@@ -17,6 +17,7 @@ let make = (_children) => {
                 self.send(allRead)
             }}
             emptyMessage="No notifications"
+            marginRight={-65}
         />
     }
 }

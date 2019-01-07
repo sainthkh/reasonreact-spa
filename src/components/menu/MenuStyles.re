@@ -5,7 +5,7 @@ module Styles = {
         position(absolute),
         top(pct(100.0)),
         zIndex(1000),
-        margin3(~top=px(2), ~h=px(0), ~bottom=px(0)),
+        margin3(~top=px(4), ~h=px(0), ~bottom=px(0)),
         padding2(~v=px(4), ~h=px(0)),
         maxHeight(px(400)),
         minWidth(px(230)),
@@ -55,6 +55,20 @@ module Styles = {
         borderTop(px(1), solid, hex("ebebee")),
         margin2(~v=px(3), ~h=px(0)),
     ]);
+
+    let triangle = style([
+        before([
+            height(`zero),
+            width(`zero),
+            borderBottom(px(6), `solid, hex("fff")),
+            borderLeft(px(6), `solid, `transparent),
+            borderRight(px(6), `solid, `transparent),
+            position(absolute),
+            top(px(-6)),
+            contentRule(""),
+            zIndex(5),
+        ])
+    ])
 }
 
 let menuWrap = (menuOnLeft) => {
@@ -63,5 +77,25 @@ let menuWrap = (menuOnLeft) => {
 
 let messageBoxWrap = Styles.messageBoxWrap;
 
+let marginRight = (sizeInPx) => {
+    open Css;
+
+    style([
+        marginRight(px(sizeInPx))
+    ])
+}
+
 let menuLink = Styles.menuLink
 let separator = Styles.separator
+let triangle = (rightLocation: int) => {
+    open Css;
+
+    merge([
+        Styles.triangle,
+        style([
+            before([
+                right(px(rightLocation)),
+            ])
+        ])
+    ])
+}

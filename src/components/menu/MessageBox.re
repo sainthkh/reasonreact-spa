@@ -112,7 +112,7 @@ type action =
 
 let component = ReasonReact.reducerComponent("NotificationBoxMenu");
 
-let make = (~source, ~title, ~buttonText, ~buttonAction, ~emptyMessage, _children) => {
+let make = (~source, ~title, ~buttonText, ~buttonAction, ~emptyMessage, ~marginRight, _children) => {
     ...component,
     initialState: () => Loading,
     didMount: self => self.send(FetchMessages),
@@ -147,7 +147,11 @@ let make = (~source, ~title, ~buttonText, ~buttonAction, ~emptyMessage, _childre
     },
 
     render: self => {
-        <div className=MenuStyles.messageBoxWrap>
+        <div className=Cn.make([
+            MenuStyles.messageBoxWrap, 
+            MenuStyles.marginRight(marginRight), 
+            MenuStyles.triangle(-marginRight)
+            ])>
             <div className=Styles.titleWrap>
                 <div className=Styles.title>{ ReasonReact.string(title) }</div>
                 { switch(self.state) {

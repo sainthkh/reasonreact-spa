@@ -36,7 +36,7 @@ type action =
 
 let component = ReasonReact.reducerComponent("SimpleMenu");
 
-let make = (~menuItems: list(menuItem), ~menuOnLeft=true, _children) => {
+let make = (~menuItems: list(menuItem), ~marginRight, ~menuOnLeft=true, _children) => {
     ...component,
     initialState: () => {
         let stack = Stack.create();
@@ -73,7 +73,6 @@ let make = (~menuItems: list(menuItem), ~menuOnLeft=true, _children) => {
     },
 
     render: self => {
-        let menuWrap = MenuStyles.menuWrap(menuOnLeft)
         let menu = Stack.top(self.state.menuStack);
 
         let onSubmenu = (title, menuItems) => 
@@ -85,7 +84,13 @@ let make = (~menuItems: list(menuItem), ~menuOnLeft=true, _children) => {
             event->ReactEvent.Synthetic.stopPropagation;
         };
 
-        <div className=menuWrap>
+        Js.log(menuOnLeft);
+
+        <div className=Cn.make([
+            MenuStyles.menuWrap(menuOnLeft), 
+            MenuStyles.marginRight(marginRight),
+            MenuStyles.triangle(-marginRight),
+            ])>
             {switch(menu.title){
             | None => {ReasonReact.string("")}
             | Some(title) => 
