@@ -29,8 +29,8 @@ module Styles = {
 
     let disclaimers = style([
         borderTop(px(1), `solid, hex("e5e5e8")),
-        paddingTop(px(16)),
-        paddingBottom(px(16)),
+        paddingTop(px(12)),
+        paddingBottom(px(12)),
     ])
 
     let companyLocation = style([
