@@ -229,7 +229,7 @@ let make = (~source, ~title, ~buttonText, ~buttonAction, ~emptyMessage, ~marginR
                     )
                     }</div>
                 }
-                | Error => { ReasonReact.string("Error") }
+                | Error => <div className=Styles.empty>{ ReasonReact.string("Error: Maybe not connected to the api server") }</div>
                 }}
             </div>
         </div>
