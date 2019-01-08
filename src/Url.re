@@ -2,7 +2,8 @@ type page =
     | Index 
     | SiteExplorer 
     | KeywordExplorer 
-    | Error404 ;
+    | Error404 
+    | NotImplemented
 
 let page = (page) =>
     switch(page) {
@@ -10,4 +11,5 @@ let page = (page) =>
     | SiteExplorer => "/site-explorer"
     | KeywordExplorer => "/keyword-explorer"
     | Error404 => "/404"
+    | NotImplemented => "/404"
     }

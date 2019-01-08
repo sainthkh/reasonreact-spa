@@ -8,12 +8,12 @@ module Styles = {
 }
 let component = ReasonReact.statelessComponent("Layout")
 
-let make = (children) => {
+let make = (~currentPage, children) => {
     ...component,
 
     render: _self => {
         <div className=Styles.wrap>
-            <Header />
+            <Header currentPage />
             <div>...children</div>
             <Footer />
         </div>

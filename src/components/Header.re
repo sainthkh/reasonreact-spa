@@ -39,25 +39,35 @@ module Styles = {
             color(hex("fff")),
         ]),
     ])
+
+    let currentPage = style([
+        color(hex("fff")),
+    ])
 }
 
 let component = ReasonReact.statelessComponent("Header");
 
-let make = (_children) => {
+let make = (~currentPage, _children) => {
     ...component,
 
     render: _self => {
+        let linkStyle = (currentPage:Url.page, linkPage:Url.page) => {
+            currentPage == linkPage ? 
+                Cn.make([Styles.link, Styles.currentPage]) :
+                Styles.link
+        };
+
         <div className=Styles.container>
             <NavLink href=Url.page(Index) className=Styles.logo>{ReasonReact.string("Ahrefs")}</NavLink>
             <div className=Styles.left>
                 <NavBar>
-                    <NavLink href=Url.page(Index) className=Styles.link>{ReasonReact.string("Dashboard")}</NavLink>
-                    <NavLink href="#" className=Styles.link>{ReasonReact.string("Alerts")}</NavLink>
-                    <NavLink href=Url.page(SiteExplorer) className=Styles.link>{ReasonReact.string("Site explorer")}</NavLink>
-                    <NavLink href="#" className=Styles.link>{ReasonReact.string("Content explorer")}</NavLink>
-                    <NavLink href=Url.page(KeywordExplorer) className=Styles.link>{ReasonReact.string("Keywords explorer")}</NavLink>
-                    <NavLink href="#" className=Styles.link>{ReasonReact.string("Rank tracker")}</NavLink>
-                    <NavLink href="#" className=Styles.link newFeature=true>{ReasonReact.string("Site audit")}</NavLink>
+                    <NavLink href=Url.page(Index) className=linkStyle(Index, currentPage)>{ReasonReact.string("Dashboard")}</NavLink>
+                    <NavLink href="#" className=linkStyle(NotImplemented, currentPage)>{ReasonReact.string("Alerts")}</NavLink>
+                    <NavLink href=Url.page(SiteExplorer) className=linkStyle(SiteExplorer, currentPage)>{ReasonReact.string("Site explorer")}</NavLink>
+                    <NavLink href="#" className=linkStyle(NotImplemented, currentPage)>{ReasonReact.string("Content explorer")}</NavLink>
+                    <NavLink href=Url.page(KeywordExplorer) className=linkStyle(KeywordExplorer, currentPage)>{ReasonReact.string("Keywords explorer")}</NavLink>
+                    <NavLink href="#" className=linkStyle(NotImplemented, currentPage)>{ReasonReact.string("Rank tracker")}</NavLink>
+                    <NavLink href="#" className=linkStyle(NotImplemented, currentPage) newFeature=true>{ReasonReact.string("Site audit")}</NavLink>
                     <Dropdown button=Text("More") menu=<SimpleMenu marginRight=0 menuItems=[
                             Link({ name: "Ahrefs rank", url: "#"}),
                             Link({ name: "Domain comparison", url: "#"}),
