@@ -28,6 +28,10 @@ module Styles = {
         justifyContent(`center),
     ])
 
+    let messages = style([
+        width(pct(100.0)),
+    ])
+
     let loading = style([
         width(px(24)),
         height(px(24)),
@@ -203,7 +207,7 @@ let make = (~source, ~title, ~buttonText, ~buttonAction, ~emptyMessage, ~marginR
                         }
                     ;
 
-                    <div>{
+                    <div className=Styles.messages>{
                     ReasonReact.array(
                         Array.mapi((i, message:Message_bs.message) => {
                             <a 
