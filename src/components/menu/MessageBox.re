@@ -15,6 +15,14 @@ module Styles = {
         marginLeft(`auto),
     ])
 
+    let buttonLink = style([
+        fontSize(px(13)),
+        color(hex("00479e")),
+        hover([
+            color(hex("f70")),
+        ]),
+    ])
+
     let messageAreaWrap = style([
         display(flexBox),
         justifyContent(`center),
@@ -160,7 +168,9 @@ let make = (~source, ~title, ~buttonText, ~buttonAction, ~emptyMessage, ~marginR
                 { switch(self.state) {
                 | Loaded(messages) => 
                     <div className=Styles.button>
-                        <a href="#" 
+                        <a 
+                            className=Styles.buttonLink
+                            href="#" 
                             onClick={ event => {
                                 buttonAction(self, messages)
                                 event->ReactEvent.Synthetic.preventDefault;
